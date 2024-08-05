@@ -1,0 +1,7 @@
+(Subject
+	(Name string)
+	(Address string)
+	(Phone number)
+	(E-mail string)
+		(Role 
+			(Holder or Bearer)))

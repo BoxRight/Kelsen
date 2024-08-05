@@ -1,0 +1,30 @@
+(expression
+  (ASSET
+    (LPAREN)
+    (expression
+      (PROPERTY_OR_SERVICE
+        (expression
+          (PROPERTY
+            (LPAREN)
+            (expression
+              (MOVABLE_OR_NON_MOVABLE
+                (MOVABLE)
+                (NON_MOVABLE)))
+            (RPAREN)))
+        (expression
+          (SERVICE
+            (LPAREN)
+            (expression
+              (POSITIVE_OR_NEGATIVE
+                (POSITIVE)
+                (NEGATIVE)))
+            (RPAREN)))))
+    (COMMA)
+    (IDENTIFIER x)
+    (COMMA)
+    (expression
+      (STRING))
+    (COMMA)
+    (IDENTIFIER y)
+    (RPAREN)))
+

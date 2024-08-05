@@ -1,0 +1,21 @@
+string ofrecer = "ofrecer";
+string sostener = "sostener su ofrecimiento";
+
+
+subject dueño = "Jesús Antonio Sesma", "Belgrado 73", 6462209010, "jesus.sesma@hotmail.com";
+subject publico = "Francisco Sesma", "Sin nombre", 6462209010, "sin correo";
+
+
+asset Ofrecer = Service, +, publico, ofrecer, dueño;
+asset Sostener = Service, +, publico, sostener, dueño;
+
+
+clause a = {
+	 Ofrecer AND Sostener,
+	 CR(Sostener)};
+
+
+query c = PWR(Ofrecer, Ofrecer, CR(Sostener));
+
+
+

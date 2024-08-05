@@ -1,0 +1,21 @@
+(expression
+	(SUBJECT
+		(LPAREN)
+		(expression
+			(STRING))
+		(COMMA)
+		(expression
+			(STRING))
+		(COMMA)
+		(INTEGER)
+		(COMMA)
+		(expression
+			(STRING))
+		(COMMA)
+		(expression
+			(ROLE
+				(LPAREN)
+				(expression
+					(BEARER_OR_HOLDER))
+				(RPAREN)))
+		(RPAREN)))

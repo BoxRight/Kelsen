@@ -1,0 +1,14 @@
+(Obligation
+  (Asset
+    (Property_or_Service type
+      (Property
+        (Movable_or_Non_movable type
+          (M Movable)
+          (NM Non_movable)))
+      (Service
+        (Positive_or_Negative type
+          (+ Positive)
+          (- Negative))))
+    (Bearer Subject)
+    (Description string)
+    (Holder Subject)))

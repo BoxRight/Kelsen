@@ -1,0 +1,75 @@
+function populate(subject dueño, subject public) 
+
+¿
+
+string ofrecer = "El hecho de ofrecer al público objetos en determinado precio";
+string sostener_ofrecimiento = "sostener su ofrecimiento.";
+string condicion = "llene determinada condición";
+string antes_condicion = "antes de que... cumplida la condición";
+string servicio = "desempeñe cierto servicio";
+string pago = "podrá exigir el pago";
+string recompensa = "la recompensa ofrecida";
+string antes_prestado = "Antes de que esté prestado el servicio"
+string revocación = "revocar su oferta, siempre que la revocación se haga con la misma publicidad que el ofrecimiento"
+string erogaciones = "ha hecho erogaciones para prestar el servicio"
+string reembolso = "tiene derecho a que se le reembolse"
+
+asset Ofrecer = Asset(Service(+), Holder(public), ofrecer, Bearer(dueño))
+asset Sostener = Asset(Service(+), Holder(public), sostener_ofrecimiento, Bearer(dueño))
+asset Condicion = Asset(Service(+), Holder(public), condicion, Bearer(dueño))
+asset Servicio = Asset(Service(+), Holder(public), servicio, Bearer(dueño))
+asset Pago = Asset(Service(+), Holder(public), pago, Bearer(dueño))
+asset Recompensa = Asset(Service(+), Holder(public), recompensa, Bearer(dueño))
+asset Antes_condicion = Asset(Service(+), Holder(public), antes_condicion, Bearer(dueño))
+asset Antes = Asset(Service(-), Holder(public), antes_prestado, Bearer(dueño))
+asset Revocación = Asset(Service(+), Holder(dueño), revocación, Bearer(public))
+asset Erogaciones = Asset(Service(+), Holder(dueño), erogaciones, Bearer(public))
+asset Reembolso = Asset(Service(+), Holder(public), reembolso, Bearer(dueño))
+
+Clause 1747 {
+    if Ofrecer:
+    then CR(Sostener)
+};
+
+{
+    1747< PWR(Ofrecer['Holder'], Sostener['Bearer'], CR(Sostener))
+};
+
+Clause 1748 {
+    if Condicion OR Servicio:
+    then CR(Sostener)
+};
+
+{
+    1748< PWR(Condicion['Holder'], Sostener['Bearer'], CR(Sostener)) AND
+          PWR(Servicio['Holder'], Sostener['Bearer'], CR(Sostener))
+};
+
+Clause 1749 {
+    if Servicio OR Condicion:
+    then CR(Pago) ALT CR(Recompensa)
+};
+
+{
+    1749< PWR(Condicion['Holder'], Pago['Bearer'], CR(Pago)) AND
+          PWR(Servicio['Holder'], Pago['Bearer'], CR(Pago)) AND
+          PWR(Condicion['Holder'], Sostener['Bearer'], CR(Recompensa)) AND
+          PWR(Servicio['Holder'], Sostener['Bearer'], CR(Recompensa))
+};
+
+Clause 1750 {
+    if Antes OR Antes_condicion:
+    then PVG(Revocación)
+
+    if PVG(Revocación) JOINT Erogaciones:
+    then CR(Reembolso)
+};
+
+{
+    1750< PWR(Reembolso['Holder'], Erogaciones['Holder'], CR(Reembolso))
+};
+
+
+
+?
+
